@@ -1,13 +1,14 @@
 # WhatsappBot
+![GitHub](https://img.shields.io/github/license/prgames123/WhatsappBot)
+![](https://img.shields.io/github/last-commit/prgames123/WhatsappBot)
+![](https://img.shields.io/github/languages/top/prgames123/WhatsappBot)
+
 Um Simples Bot de Whatsapp 4Fun, Usando a Biblioteca 🕷 [Venom-Bot](https://github.com/orkestral/venom/) 🕷
 
 <p align="left">
  <a href="#Funções">Funções</a> •
  <a href="#Features">Features</a> • 
  <a href="#executar-o-bot">Executar o Bot</a> • 
- <a href="#Tecnologias">Tecnologias</a> • 
- <a href="#licenc-a">Licença</a> • 
- <a href="#autor">Autor</a>
 </p>
 
 ## Funções
@@ -25,6 +26,7 @@ Manda Um Olá!
 - [x] Mandar Um Olá :D
 - [x] Baixar Musicas do Youtube
 - [ ] Baixar Playlist do Youtube
+- [ ] Rodar no Docker
 - [ ] Adicionar Flag para enviar Video 
 - [ ] Baixar Musicas do Spotify
 
