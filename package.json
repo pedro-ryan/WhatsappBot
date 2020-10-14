@@ -1,19 +1,25 @@
 {
   "name": "WhatsappBot",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Um bot Simples de Whatsapp",
+  "repository": {
+    "url": "https://github.com/prgames123/WhatsappBot"
+  },
+  "main": "./src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon ./src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ffmpeg-static": "^4.2.7",
-    "venom-bot": "^2.0.5",
-    "youtube-mp3-downloader": "^0.7.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "googleapis": "^60.0.1",
+    "image-downloader": "^4.0.1",
+    "venom-bot": "^2.0.14",
+    "youtube-dl": "^3.0.2",
     "ytsr": "^1.0.1"
   },
   "devDependencies": {

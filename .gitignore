@@ -105,3 +105,6 @@ dist
 
 # Tokens
 tokens/
+
+# Creadentials
+src/credentials/google-search.json

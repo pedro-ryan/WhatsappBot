@@ -1,0 +1,62 @@
+{
+  "!play": {
+    "description": "Baixa e Envia o Audio de um video do Youtube",
+    "use": "!play <Nome da Musica> [parâmetros opcionais]",
+    "example": "!play Rap God",
+    "parameters": {
+      "required": {
+        "<Nome da Musica>": {
+          "description": "Termo de Pesquisa que sera usado no Youtube"
+        }
+      },
+      "optional": {
+        "-video": {
+          "description": "Envia o video ao invés da Musica"
+        }
+      }
+    }
+  },
+  "!hi": {
+    "description": "Manda um Olá",
+    "use": "!hi",
+    "example": "!hi",
+    "parameters": {
+      "required": {
+
+      },
+      "optional": {
+
+      }
+    }
+  },
+  "!image": {
+    "description": "Busca no Google e Envia 3 imagens",
+    "use": "!image <Nome da Imagem> [parâmetros opcionais]",
+    "example": "!image Paisagem",
+    "parameters": {
+      "required": {
+        "<Nome da Imagem>": {
+          "description": "Termo de Pesquisa que sera usado para buscar Imagens no Google"
+        }
+      },
+      "optional": {
+
+      }
+    }
+  },
+  "!help": {
+    "description": "Descreve como Um Comando Funciona",
+    "use": "!help <Nome do Comando>",
+    "example": "!help !play",
+    "parameters": {
+      "required": {
+        "<Nome do Comando>": {
+          "description": "O Nome do comando que Você Quer Saber como Funciona"
+        }
+      },
+      "optional": {
+
+      }
+    }
+  }
+}

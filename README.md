@@ -7,8 +7,8 @@ Um Simples Bot de Whatsapp 4Fun, Usando a Biblioteca 🕷 [Venom-Bot](https://gi
 
 <p align="left">
  <a href="#Funções">Funções</a> •
- <a href="#Features">Features</a> • 
- <a href="#executar-o-bot">Executar o Bot</a> • 
+ <a href="#Features">Features</a> •
+ <a href="#executar-o-bot">Executar o Bot</a> •
 </p>
 
 ## Funções
@@ -16,7 +16,15 @@ Um Simples Bot de Whatsapp 4Fun, Usando a Biblioteca 🕷 [Venom-Bot](https://gi
 > **!play <_Nome da Musica_>**
 
 Procura pela Musica no Youtube, Baixa, Converte em MP3 e Envia.
-  
+
+> **!image <_Termo de Pesquisa_>**
+
+Procura imagens no Google, Baixa e Envia
+
+> **!help <_Comando_>**
+
+Dá um Resumo sobre um Comando
+
 > **!hi**
 
 Manda Um Olá!
@@ -27,7 +35,7 @@ Manda Um Olá!
 - [x] Baixar Musicas do Youtube
 - [ ] Baixar Playlist do Youtube
 - [ ] Rodar no Docker
-- [ ] Adicionar Flag para enviar Video 
+- [x] Adicionar Flag para enviar Video
 - [ ] Baixar Musicas do Spotify
 
 ## Executar o Bot
@@ -35,7 +43,7 @@ Manda Um Olá!
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
 
 E é bom ter um Editor de Codigo, O que eu Uso e Recomendo é o [VSCode](https://code.visualstudio.com/)
 
