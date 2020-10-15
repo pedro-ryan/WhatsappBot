@@ -33,9 +33,11 @@ Manda Um Olá!
 
 - [x] Mandar Um Olá :D
 - [x] Baixar Musicas do Youtube
-- [ ] Baixar Playlist do Youtube
-- [ ] Rodar no Docker
+- [x] Rodar no Docker
 - [x] Adicionar Flag para enviar Video
+- [ ] Adicionar Confirmação para Downloads
+- [ ] Criar Conversor de Imagem para Figurinha
+- [ ] Baixar Playlist do Youtube
 - [ ] Baixar Musicas do Spotify
 
 ## Executar o Bot

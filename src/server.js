@@ -29,9 +29,14 @@ function start(client) {
 
 venom
   .create('WhatsappBot', undefined, undefined, {
-    headless: false,
+    headless: true,
     disableSpins: true,
     disableWelcome: true,
+    browserArgs: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+    ],
   })
   .then((client) => start(client))
   .catch((erro) => {
