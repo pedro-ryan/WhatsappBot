@@ -1,46 +1,53 @@
-# WhatsappBot
-![GitHub](https://img.shields.io/github/license/prgames123/WhatsappBot)
-![](https://img.shields.io/github/last-commit/prgames123/WhatsappBot)
-![](https://img.shields.io/github/languages/top/prgames123/WhatsappBot)
+<h1 align="center">💬WhatsappBot🤖</h1>
 
-Um Simples Bot de Whatsapp 4Fun, Usando a Biblioteca 🕷 [Venom-Bot](https://github.com/orkestral/venom/) 🕷
-
-<p align="left">
- <a href="#Funções">Funções</a> •
- <a href="#Features">Features</a> •
- <a href="#executar-o-bot">Executar o Bot</a> •
+<p align="center">
+  <img src="https://img.shields.io/github/license/prgames123/WhatsappBot"/>
+  <img src="https://img.shields.io/github/last-commit/prgames123/WhatsappBot"/>
+  <img src="https://img.shields.io/github/languages/top/prgames123/WhatsappBot"/>
 </p>
 
-## Funções
+<p align="center">
+  Um Simples Bot de Whatsapp 4Fun, Usando a Biblioteca
+  <a href="https://github.com/orkestral/venom/">
+    🕷 Venom-Bot 🕷
+  </a>
+</p>
 
-> **!play <_Nome da Musica_>**
+<p align="center">
+ <a href="#Funções">Funções</a> •
+ <a href="#Features">Features</a> •
+ <a href="#executar-o-bot">Executar o Bot</a>
+</p>
 
-Procura pela Musica no Youtube, Baixa, Converte em MP3 e Envia.
+## Comandos
 
-> **!image <_Termo de Pesquisa_>**
+| Comando    | Uso                                                 | Descrição                                     | Funcionando |
+|------------|-----------------------------------------------------|-----------------------------------------------|:-----------:|
+| **!play**  | **!play** <_Nome do Vídeo ou Musica> <_Parâmetros_> | Baixa e Envia o Áudio de Um Vídeo do Youtube  |:x:|
+| **!image** | **!image** <_Termo da Pesquisa_>                    | Baixa e Envia Imagens com o termo de Pesquisa |:heavy_check_mark:|
+| **!help**  | **!help** <_Comando_>                               | Dá um resumo Sobre Algum Comando              |:heavy_check_mark:|
+| **!hi**    | **!hi**                                             | Manda um Olá                                  |:heavy_check_mark:|
 
-Procura imagens no Google, Baixa e Envia
+# Objetivos/Features
 
-> **!help <_Comando_>**
+|       **Bot**      |                     **Features**                     |
+|:------------------:|:----------------------------------------------------:|
+| :heavy_check_mark: | Adicionar Comando Para Mandar Olá :D                 |
+| :x:                | Adicionar Comando Para Baixar Musica                 |
+| :heavy_check_mark: | Adicionar Comando Para Baixar Imagem                 |
+| :heavy_check_mark: | Adicionar Comando de Ajuda                           |
+| :x:                | Adicionar Comando Para Converter Imagem em Figurinha |
+| :heavy_check_mark: |                    Rodar no Docker                   |
 
-Dá um Resumo sobre um Comando
+|      **!play**     |            **Feature**            |
+|:------------------:|:---------------------------------:|
+| :heavy_check_mark: |       flag para enviar Vídeo      |
+| :x:                |      Baixar Musica do Youtube     |
+| :x:                |     Confirmação para Donwload     |
+| :x:                |     Baixar Playlist do Youtube    |
+| :x:                | Baixar Musica/Playlist do Spotify |
 
-> **!hi**
-
-Manda Um Olá!
-
-### Features
-
-- [x] Mandar Um Olá :D
-- [x] Baixar Musicas do Youtube
-- [x] Rodar no Docker
-- [x] Adicionar Flag para enviar Video
-- [ ] Adicionar Confirmação para Downloads
-- [ ] Criar Conversor de Imagem para Figurinha
-- [ ] Baixar Playlist do Youtube
-- [ ] Baixar Musicas do Spotify
-
-## Executar o Bot
+# Executar o Bot
 
 ### Pré-requisitos
 
@@ -51,7 +58,7 @@ E é bom ter um Editor de Codigo, O que eu Uso e Recomendo é o [VSCode](https:/
 
 ### Rodando o Bot
 
-1. Clone este repositório
+1. Faça um Clone deste repositório
 ```
 $ git clone https://github.com/prgames123/WhatsappBot
 ```
