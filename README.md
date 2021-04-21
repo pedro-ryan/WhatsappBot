@@ -14,10 +14,16 @@
 </p>
 
 <p align="center">
- <a href="#Funções">Funções</a> •
- <a href="#Features">Features</a> •
+ <a href="#comandos">Funções</a> •
+ <a href="#objetivosfeatures">Features</a> •
  <a href="#executar-o-bot">Executar o Bot</a>
 </p>
+
+<h3 align="center"> 
+	🚧  Em construção...  🚧
+</h3>
+
+---
 
 ## Comandos
 
