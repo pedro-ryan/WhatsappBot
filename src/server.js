@@ -1,6 +1,7 @@
 const venom = require('venom-bot');
 const Commands = require('./commands');
 const HelperCommandsAndParams = require('./helpers/CommandsAndParams');
+require('dotenv').config();
 
 function start(client) {
   client.onStateChange((state) => {
@@ -20,7 +21,7 @@ function start(client) {
 
   client.onAnyMessage(async (message) => {
     const CommandAndParams = HelperCommandsAndParams.FilterInput(message);
-    if (CommandAndParams.PureCommand) {
+    if (CommandAndParams?.PureCommand) {
       const Command = Commands[CommandAndParams.Command] || Commands.help;
       Command(client, message, CommandAndParams);
     }
@@ -29,7 +30,7 @@ function start(client) {
 
 venom
   .create('WhatsappBot', undefined, undefined, {
-    headless: true,
+    headless: false,
     disableSpins: true,
     disableWelcome: true,
     browserArgs: [

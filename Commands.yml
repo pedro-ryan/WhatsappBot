@@ -1,0 +1,75 @@
+---
+status:
+  enable: false
+  description: Divide um video em partes para o Status
+  use: "_na legenda de um video_ !status"
+  example: "!status"
+  parameters:
+    required: {}
+    optional: {}
+video:
+  enable: false
+  description: Baixa e Envia um video do Youtube
+  use: "!video <Titulo do Video> [parâmetros opcionais]"
+  example: "!video Rap God"
+  parameters:
+    required:
+      "<Titulo do Video>":
+        description: Termo de Pesquisa que sera usado no Youtube
+    optional: {}
+music:
+  enable: false
+  description: Baixa e Envia o Audio de um video do Youtube
+  use: "!music <Nome da Musica> [parâmetros opcionais]"
+  example: "!music Rap God"
+  parameters:
+    required:
+      "<Nome da Musica>":
+        description: Termo de Pesquisa que sera usado no Youtube
+    optional: {}
+hi:
+  enable: false
+  description: Manda um Olá
+  use: "!hi"
+  example: "!hi"
+  parameters:
+    required: {}
+    optional: {}
+image:
+  enable: false
+  description: Busca no Google e Envia 3 imagens
+  use: "!image <Nome da Imagem> [parâmetros opcionais]"
+  example: "!image Paisagem"
+  parameters:
+    required:
+      "<Nome da Imagem>":
+        description: Termo de Pesquisa que sera usado para buscar Imagens no Google
+    optional:
+      "-amount":
+        description: A quantidade de Imagens a serem baixadas
+help:
+  enable: true
+  description: Descreve como Um Comando Funciona
+  use: "!help <Nome do Comando>"
+  example: "!help !play"
+  parameters:
+    required:
+      "<Nome do Comando>":
+        description: O Nome do comando que Você Quer Saber como Funciona
+    optional: {}
+figurinha:
+  enable: false
+  description: converte uma imagem em figurinha
+  use: "_na legenda de uma imagem_ !figurinha"
+  example: "!figurinha"
+  parameters:
+    required: {}
+    optional: {}
+anime:
+  enable: true
+  description: baixa um ep de anime
+  use: "!anime [Nome do anime] [temporada] [episodio]"
+  example: "!anime"
+  parameters:
+    required: {}
+    optional: {}

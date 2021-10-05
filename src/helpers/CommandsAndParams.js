@@ -1,17 +1,19 @@
-/* eslint-disable no-param-reassign */
 function FilterInput(message) {
+  // console.log(message);
   function SeparateWords() {
     switch (message.type) {
       case 'chat':
-        return message.body.split(' ');
+        return message.body?.split(' ');
       case 'image':
-        return message.caption.split(' ');
+        return message.caption?.split(' ');
+      case 'video':
+        return message.caption?.split(' ');
       default:
-        return message.body.split(' ');
+        break;
     }
   }
   function getParams(WordsArray, CommandAndParams) {
-    if (WordsArray[0].trim().startsWith('!')) {
+    if (WordsArray && WordsArray[0].trim().startsWith('!')) {
       CommandAndParams.PureCommand = WordsArray[0].toLowerCase();
       CommandAndParams.Command = WordsArray[0].toLowerCase().replace('!', '');
       WordsArray.shift();
@@ -19,7 +21,8 @@ function FilterInput(message) {
       WordsArray.map((Value) => {
         if (Value.length > 0) {
           if (Value.trim().startsWith('-') && Value.length > 1) {
-            CommandAndParams.Params[Value] = true;
+            const param = Value.toLowerCase().replace('-', '');
+            CommandAndParams.Params[param] = true;
           } else {
             CommandAndParams.Params.default.push(Value);
           }
@@ -30,16 +33,17 @@ function FilterInput(message) {
   }
   function getParamsOfParams(WordsArray, CommandAndParams) {
     const Params = Object.keys(CommandAndParams.Params).slice(1);
+    const Words = WordsArray.map((value) => value.replace('-', ''));
     Params.map((value, index, array) => {
-      const IndexNextParam = WordsArray.indexOf(array[index + 1]);
-      const Results = WordsArray.slice(
-        WordsArray.indexOf(value) + 1,
-        IndexNextParam !== -1 ? IndexNextParam : undefined,
+      const IndexNextParam = Words.indexOf(array[index + 1]);
+      const Results = Words.slice(
+        Words.indexOf(value) + 1,
+        IndexNextParam !== -1 ? IndexNextParam : undefined
       );
       if (Results.length > 0) {
         Results.map((valueParam) => {
           const indexParam = CommandAndParams.Params.default.lastIndexOf(
-            valueParam,
+            valueParam
           );
           if (indexParam > -1) {
             CommandAndParams.Params.default.splice(indexParam, 1);
@@ -62,10 +66,13 @@ function FilterInput(message) {
   };
 
   getParams(WordsArray, CommandAndParams);
+  if (!CommandAndParams.PureCommand) {
+    return null;
+  }
   getParamsOfParams(WordsArray, CommandAndParams);
 
   CommandAndParams.ConcatenatedParams = CommandAndParams.Params.default.join(
-    ' ',
+    ' '
   );
   if (message.sender.isMe) {
     message.from = message.to;

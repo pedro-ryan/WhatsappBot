@@ -4,22 +4,22 @@ const path = require('path');
 const fs = require('fs');
 
 const customSearch = google.customsearch('v1');
-const googleSearchCredentials = require('../credentials/google-search.json');
 
 async function CommandImage(client, message, CommandAndParams) {
   if (!CommandAndParams.ConcatenatedParams) {
-    client.sendText(
+    return client.sendText(
       message.from,
       'O comando "!image" precisa de um segundo parâmetro EX: !image <Nome da Imagem>',
     );
   }
-  async function FetchImagesLinks(query) {
+  async function FetchImagesLinks(query, Amount) {
+    // const num = Amount || 3;
     const response = await customSearch.cse.list({
-      auth: googleSearchCredentials.apiKey,
-      cx: googleSearchCredentials.searchEngineId,
+      auth: process.env.ApiKey,
+      cx: process.env.SearchEngineId,
       searchType: 'image',
       q: query,
-      num: 3,
+      num: 20,
     });
     const Links = response.data.items.map((value) => value.link);
     return Links;
@@ -29,11 +29,22 @@ async function CommandImage(client, message, CommandAndParams) {
       message.from,
       `Pesquisando... "${CommandAndParams.ConcatenatedParams}"`,
     );
+    const Amount = CommandAndParams.Params.amount?.[0] || 3;
+    if (Amount > 10) {
+      client.sendText(
+        message.from,
+        'O Máximo de Imagens que podem ser baixadas em 1 comando são 10 ',
+      );
+    }
     const ImagesLinks = await FetchImagesLinks(
       CommandAndParams.ConcatenatedParams,
+      // Amount > 10 ? 10 : Amount,
     );
     console.log(ImagesLinks);
     ImagesLinks.map((value, index) => {
+      if (index + 1 === Amount) {
+        return value;
+      }
       imageDownloader
         .image({
           url: value,
@@ -47,11 +58,12 @@ async function CommandImage(client, message, CommandAndParams) {
         .then(({ filename }) => {
           client
             .sendImage(message.from, filename)
-            .then(() => fs.unlinkSync(filename))
+            // .then(() => fs.unlinkSync(filename))
             .catch((err) => console.log(err));
         })
         .catch((err) => {
           console.log(err);
+          // throw err;
         });
       return value;
     });

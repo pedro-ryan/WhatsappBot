@@ -17,6 +17,7 @@
   "rules": {
     "no-console": "off",
     "prettier/prettier": "error",
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "global-require": "off"
   }
 }

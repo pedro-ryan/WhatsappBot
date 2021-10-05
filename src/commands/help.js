@@ -1,8 +1,15 @@
-const CommandInfos = require('../commands-info.json');
+const path = require('path');
+const fs = require('fs');
+const yaml = require('yaml');
 
 function CommandHelp(client, message, CommandAndParams) {
   console.log('HELP!!!!!');
   console.log(CommandAndParams);
+  const CommandsYml = fs.readFileSync(
+    path.join(__dirname, '../../Commands.yml'),
+    'utf-8',
+  );
+  const CommandInfos = yaml.parse(CommandsYml);
   const AllCommands = Object.keys(CommandInfos);
 
   const SendHelpCommands = () => {

@@ -8,15 +8,11 @@ Aqui estão listadas as *CREDENCIAIS* necessárias para os Comandos que precisam
 
 https://cloud.google.com/
 
-*Arquivo*
-_google-search.json_
-
+No Arquivo **.env** adicione
 
 ```
-{
-  "apiKey": "Key para a API do Custom Search",
-  "searchEngineId": "ID do search engine que será usado"
-}
+  ApiKey="Key para a API do Custom Search",
+  SearchEngineId="ID do search engine que será usado"
 ```
 *Onde Conseguir*
 

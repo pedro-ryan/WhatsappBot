@@ -15,21 +15,29 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ffmpeg-static": "^4.2.7",
+    "base64image-to-file": "^1.2.0",
+    "dotenv": "^10.0.0",
+    "ffmpeg-static": "^4.4.0",
     "fluent-ffmpeg": "^2.1.2",
-    "googleapis": "^60.0.1",
-    "image-downloader": "^4.0.1",
-    "venom-bot": "^2.0.14",
+    "get-video-duration": "^4.0.0",
+    "googleapis": "^88.2.0",
+    "image-downloader": "^4.0.3",
+    "mime-types": "^2.1.33",
+    "progress-stream": "^2.0.0",
+    "require-all": "^3.0.0",
+    "temp": "^0.9.4",
+    "venom-bot": "^3.1.7",
+    "yaml": "^1.10.2",
     "youtube-dl": "^3.0.2",
-    "ytsr": "^1.0.1"
+    "yt-search": "^2.10.1"
   },
   "devDependencies": {
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "nodemon": "^2.0.4",
-    "prettier": "^2.1.2"
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1"
   }
 }

@@ -29,7 +29,8 @@
 
 | Comando    | Uso                                                 | Descrição                                     | Funcionando |
 |------------|-----------------------------------------------------|-----------------------------------------------|:-----------:|
-| **!play**  | **!play** <_Nome do Vídeo ou Musica> <_Parâmetros_> | Baixa e Envia o Áudio de Um Vídeo do Youtube  |:x:|
+| **!music**  | **!music** <_Nome da Musica> <_Parâmetros_> | Baixa e Envia o Áudio de Um Vídeo do Youtube  |:heavy_check_mark:|
+| **!video**  | **!video** <_Nome do Vídeo> <_Parâmetros_> | Baixa e Envia Um Vídeo do Youtube  |:heavy_check_mark:|
 | **!image** | **!image** <_Termo da Pesquisa_>                    | Baixa e Envia Imagens com o termo de Pesquisa |:heavy_check_mark:|
 | **!help**  | **!help** <_Comando_>                               | Dá um resumo Sobre Algum Comando              |:heavy_check_mark:|
 | **!hi**    | **!hi**                                             | Manda um Olá                                  |:heavy_check_mark:|
@@ -39,19 +40,24 @@
 |       **Bot**      |                     **Features**                     |
 |:------------------:|:----------------------------------------------------:|
 | :heavy_check_mark: | Adicionar Comando Para Mandar Olá :D                 |
-| :x:                | Adicionar Comando Para Baixar Musica                 |
+| :heavy_check_mark: | Adicionar Comando Para Baixar Musica                 |
+| :heavy_check_mark: | Adicionar Comando Para Baixar Video                  |
 | :heavy_check_mark: | Adicionar Comando Para Baixar Imagem                 |
 | :heavy_check_mark: | Adicionar Comando de Ajuda                           |
 | :x:                | Adicionar Comando Para Converter Imagem em Figurinha |
 | :heavy_check_mark: |                    Rodar no Docker                   |
 
-|      **!play**     |            **Feature**            |
+|     **!music**     |            **Feature**            |
 |:------------------:|:---------------------------------:|
-| :heavy_check_mark: |       flag para enviar Vídeo      |
-| :x:                |      Baixar Musica do Youtube     |
-| :x:                |     Confirmação para Donwload     |
+| :heavy_check_mark: |      Baixar Musica do Youtube     |
+| :x:                |     Confirmação para Download     |
 | :x:                |     Baixar Playlist do Youtube    |
 | :x:                | Baixar Musica/Playlist do Spotify |
+
+|     **!video**     |            **Feature**            |
+|:------------------:|:---------------------------------:|
+| :heavy_check_mark: |      Baixar Video do Youtube      |
+| :x:                |     Confirmação para Download     |
 
 # Executar o Bot
 
