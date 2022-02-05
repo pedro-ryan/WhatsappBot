@@ -20,7 +20,7 @@
     "googleapis": "^60.0.1",
     "image-downloader": "^4.0.1",
     "venom-bot": "^2.0.14",
-    "youtube-dl": "^3.0.2",
+    "youtube-dl": "^3.5.0",
     "ytsr": "^1.0.1"
   },
   "devDependencies": {
