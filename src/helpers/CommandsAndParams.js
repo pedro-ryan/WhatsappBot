@@ -2,8 +2,6 @@
 function FilterInput(message) {
   function SeparateWords() {
     switch (message.type) {
-      case 'chat':
-        return message.body.split(' ');
       case 'image':
         return message.caption.split(' ');
       default:
