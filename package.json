@@ -21,7 +21,7 @@
     "image-downloader": "^4.0.1",
     "venom-bot": "^2.0.14",
     "youtube-dl": "^3.0.2",
-    "ytsr": "^1.0.1"
+    "ytsr": "^3.7.0"
   },
   "devDependencies": {
     "eslint": "^7.9.0",
