@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ffmpeg-static": "^4.2.7",
+    "ffmpeg-static": "^5.0.1",
     "fluent-ffmpeg": "^2.1.2",
     "googleapis": "^60.0.1",
     "image-downloader": "^4.0.1",
