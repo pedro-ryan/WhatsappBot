@@ -19,7 +19,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "googleapis": "^60.0.1",
     "image-downloader": "^4.0.1",
-    "venom-bot": "^2.0.14",
+    "venom-bot": "^4.3.0",
     "youtube-dl": "^3.0.2",
     "ytsr": "^1.0.1"
   },
