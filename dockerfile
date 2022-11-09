@@ -1,18 +1,15 @@
-FROM buildkite/puppeteer:latest
+FROM node:19-alpine
 
 WORKDIR /app
 
-RUN apt-get update \
-    && apt-get install python -y
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
 
-COPY package.json .
-COPY package-lock.json .
-COPY ./src ./src
-COPY ./tokens ./tokens
+COPY package*.json ./
 
-RUN npm install
+RUN npm install --verbose --legacy-peer-deps
 
+COPY . .
 
-ENV PATH="${PATH}:/node_modules/.bin"
+VOLUME "/app/db"
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start:dock" ]

@@ -103,8 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
-# Tokens
-tokens/
+# Local database
+db/
 
 # Creadentials
 src/credentials/google-search.json
