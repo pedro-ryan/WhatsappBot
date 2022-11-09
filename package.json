@@ -5,31 +5,42 @@
   "repository": {
     "url": "https://github.com/prgames123/WhatsappBot"
   },
-  "main": "./src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/server.js",
-    "start:dev": "nodemon ./src/server.js"
+    "start": "nodemon ./src/baileys.ts",
+    "start:dock": "nodemon -L ./src/baileys.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ffmpeg-static": "^4.2.7",
+    "@adiwajshing/baileys": "^4.4.0",
+    "@hapi/boom": "^10.0.0",
+    "ffmpeg-static": "^5.1.0",
     "fluent-ffmpeg": "^2.1.2",
-    "googleapis": "^60.0.1",
-    "image-downloader": "^4.0.1",
-    "venom-bot": "^2.0.14",
-    "youtube-dl": "^3.0.2",
-    "ytsr": "^1.0.1"
+    "image-downloader": "^4.3.0",
+    "jimp": "^0.16.2",
+    "link-preview-js": "^3.0.4",
+    "pouchdb": "^7.3.0",
+    "qrcode-terminal": "^0.12.0",
+    "truncate-utf8-bytes": "^1.0.2",
+    "youtube-dl-exec": "^2.1.8",
+    "ytsr": "^3.8.0"
   },
   "devDependencies": {
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "nodemon": "^2.0.4",
-    "prettier": "^2.1.2"
+    "@types/ffmpeg-static": "^3.0.1",
+    "@types/fluent-ffmpeg": "^2.1.20",
+    "@types/node": "^18.11.9",
+    "@types/pouchdb": "^6.4.0",
+    "@types/qrcode-terminal": "^0.12.0",
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
   }
 }
