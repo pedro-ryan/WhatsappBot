@@ -1,6 +1,12 @@
 const CommandInfos = require('../commands-info.json');
+import { Message, Whatsapp } from 'venom-bot';
+import { CommandAndParams } from '../../helpers/CommandsAndParams';
 
-function CommandHelp(client, message, CommandAndParams) {
+export default function CommandHelp(
+  client: Whatsapp,
+  message: Message,
+  CommandAndParams: CommandAndParams,
+) {
   console.log('HELP!!!!!');
   console.log(CommandAndParams);
   const AllCommands = Object.keys(CommandInfos);
@@ -12,7 +18,7 @@ function CommandHelp(client, message, CommandAndParams) {
     );
     client.sendText(
       message.from,
-      'Para saber o que cada Comando faz digite *"!help <comando>"* *EX: !help !play*',
+      'Para saber o que cada Comando faz digite *"!help <comando>"* \n*EX: !help !play*',
     );
   };
 
@@ -23,28 +29,30 @@ function CommandHelp(client, message, CommandAndParams) {
       `Comando "${CommandAndParams.PureCommand}" não encontrado`,
     );
     SendHelpCommands();
-  } else if (CommandAndParams.Params.length === 0) {
+  } else if (CommandAndParams.Params.default.length === 0) {
     client.sendText(
       message.from,
-      'O Comando "!help" Precisa de Um segundo Parametro...',
+      'O Comando "!help" Precisa de Um segundo Parâmetro...',
     );
     SendHelpCommands();
-  } else if (CommandInfos[CommandAndParams.Params[0]]) {
+  } else if (CommandInfos[CommandAndParams.Params.default[0]]) {
     client.sendText(
       message.from,
-      `Sobre o Comando ${CommandAndParams.Params[0]}:`,
+      `Sobre o Comando ${CommandAndParams.Params.default[0]}:`,
     );
     client.sendText(
       message.from,
-      `Descrição: ${CommandInfos[CommandAndParams.Params[0]].description}`,
+      `Descrição: ${
+        CommandInfos[CommandAndParams.Params.default[0]].description
+      }`,
     );
     client.sendText(
       message.from,
-      `Como Usar: ${CommandInfos[CommandAndParams.Params[0]].use}`,
+      `Como Usar: ${CommandInfos[CommandAndParams.Params.default[0]].use}`,
     );
     client.sendText(
       message.from,
-      `Exemplo: ${CommandInfos[CommandAndParams.Params[0]].example}`,
+      `Exemplo: ${CommandInfos[CommandAndParams.Params.default[0]].example}`,
     );
     // client.sendText(
     //   message.from,
@@ -60,5 +68,3 @@ function CommandHelp(client, message, CommandAndParams) {
     // );
   }
 }
-
-module.exports = CommandHelp;
