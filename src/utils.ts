@@ -213,8 +213,8 @@ const textBox = (txt: string, style: StyleBox, char = ' ') => {
 
 const makeCenter = (rawTxt: string, rawChar = ' ', trim = true) => {
   const txtNoStyle = removeStyle(rawTxt);
-  let maxChar = 29;
-  if (revertBold(rawTxt).length !== rawTxt.length) maxChar = 27;
+  let maxChar = 28;
+  if (revertBold(rawTxt).length !== rawTxt.length) maxChar = 26;
 
   const centralize = (txt: string, char = ' ') => {
     const charToAdd =
@@ -224,13 +224,13 @@ const makeCenter = (rawTxt: string, rawChar = ' ', trim = true) => {
     return left + txt + right;
   };
 
-  if (txtNoStyle.length === 29) {
+  if (txtNoStyle.length === 28) {
     return rawTxt;
-  } else if (txtNoStyle.length > 29 && !trim) {
+  } else if (txtNoStyle.length > 28 && !trim) {
     let result: string[][] = [];
     let pointer = 0;
     txtNoStyle.split(' ').forEach((v) => {
-      if ((result[pointer]?.join(' ').length || 0) + v.length >= 29)
+      if ((result[pointer]?.join(' ').length || 0) + v.length >= 28)
         pointer += 1;
       if (!result[pointer]) result[pointer] = [];
       result[pointer].push(v);
@@ -238,7 +238,7 @@ const makeCenter = (rawTxt: string, rawChar = ' ', trim = true) => {
     return result.map((v) => centralize(v.join(' '), rawChar)).join('\r\n');
   }
   let result = centralize(rawTxt, rawChar);
-  if (result.length > 29 && trim) {
+  if (result.length > 28 && trim) {
     const transform = result.split('');
     transform.splice(-3, 3, '...');
     result = transform.join('');
