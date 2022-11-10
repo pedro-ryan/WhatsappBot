@@ -83,7 +83,7 @@ E é bom ter um Editor de Código, O que eu Uso e Recomendo é o [VSCode](https:
 
 ```bash
 | 1. Faça um Clone deste repositório
-$ git clone https://github.com/prgames123/WhatsappBot
+$ git clone https://github.com/pedro-ryan/WhatsappBot
 
 | 2. Acesse a pasta do projeto no terminal/cmd
 $ cd WhatsappBot
