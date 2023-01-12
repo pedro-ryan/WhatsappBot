@@ -191,15 +191,15 @@ type StyleBox = keyof typeof Box;
 
 const topBox = (style: StyleBox) => {
   const { topLeft, horizontal, topRight } = Box[style];
-  return `${topLeft}${horizontal.repeat(27)}${topRight}`;
+  return `${topLeft}${horizontal.repeat(26)}${topRight}`;
 };
 const lineBox = (style: StyleBox) => {
   const { centerLeft, horizontal, centerRight } = Box[style];
-  return `${centerLeft}${horizontal.repeat(27)}${centerRight}`;
+  return `${centerLeft}${horizontal.repeat(26)}${centerRight}`;
 };
 const bottomBox = (style: StyleBox) => {
   const { bottomLeft, horizontal, bottomRight } = Box[style];
-  return `${bottomLeft}${horizontal.repeat(27)}${bottomRight}`;
+  return `${bottomLeft}${horizontal.repeat(26)}${bottomRight}`;
 };
 const textBox = (txt: string, style: StyleBox, char = ' ') => {
   const centered = makeCenter(txt, char).split('');
@@ -213,24 +213,26 @@ const textBox = (txt: string, style: StyleBox, char = ' ') => {
 
 const makeCenter = (rawTxt: string, rawChar = ' ', trim = true) => {
   const txtNoStyle = removeStyle(rawTxt);
-  let maxChar = 28;
-  if (revertBold(rawTxt).length !== rawTxt.length) maxChar = 26;
+  let maxChar = 27;
+  if (revertBold(rawTxt).length !== rawTxt.length) maxChar = 24;
 
   const centralize = (txt: string, char = ' ') => {
-    const charToAdd =
-      (maxChar - revertBold(removeStyle(txt)).length) / 2 / char.length;
+    const charToAdd = Math.max(
+      (maxChar - revertBold(removeStyle(txt)).length) / 2 / char.length,
+      0,
+    );
     const left = char.repeat(charToAdd);
     const right = char.repeat(Math.ceil(charToAdd));
     return left + txt + right;
   };
 
-  if (txtNoStyle.length === 28) {
+  if (txtNoStyle.length === maxChar) {
     return rawTxt;
-  } else if (txtNoStyle.length > 28 && !trim) {
+  } else if (txtNoStyle.length > maxChar && !trim) {
     let result: string[][] = [];
     let pointer = 0;
     txtNoStyle.split(' ').forEach((v) => {
-      if ((result[pointer]?.join(' ').length || 0) + v.length >= 28)
+      if ((result[pointer]?.join(' ').length || 0) + v.length >= maxChar)
         pointer += 1;
       if (!result[pointer]) result[pointer] = [];
       result[pointer].push(v);
@@ -238,8 +240,8 @@ const makeCenter = (rawTxt: string, rawChar = ' ', trim = true) => {
     return result.map((v) => centralize(v.join(' '), rawChar)).join('\r\n');
   }
   let result = centralize(rawTxt, rawChar);
-  if (result.length > 28 && trim) {
-    const transform = result.split('');
+  if (result.length > maxChar && trim) {
+    const transform = result.slice(0, maxChar).split('');
     transform.splice(-3, 3, '...');
     result = transform.join('');
   }
@@ -250,5 +252,27 @@ const monospace = (txt: string) => {
   return `\`\`\`${removeStyle(txt)}\`\`\``;
 };
 
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array: any[]) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 export { monospace, bold, makeCenter, revertBold, removeStyle, makeCommand };
 export { lineBox, topBox, bottomBox, textBox };
+export { shuffle };
