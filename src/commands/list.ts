@@ -78,6 +78,36 @@ const subCommands: SubCommands = {
     });
     SendList(sock, command);
   },
+  list(sock, command) {
+    const sections = [
+      {
+        title: 'Listas Ativas',
+        rows: Lists.filter((e) => !e.closed).map((v) => ({
+          title: v.title,
+          rowId: v.title,
+          description: v.description,
+        })),
+      },
+      {
+        title: 'Listas Completas',
+        rows: Lists.filter((e) => e.closed).map((v) => ({
+          title: v.title,
+          rowId: v.title,
+          description: v.description,
+        })),
+      },
+    ] as proto.Message.ListMessage.ISection[];
+
+    sock.sendMessage(command.id, {
+      title: 'Listagem das Listas do Grupo atual',
+      text: [
+        monospace('Atualmente esse grupo tem 1 lista ativa'),
+        monospace('Selecione uma lista abaixo para poder ter acesso a ela'),
+      ].join('\r\n'),
+      buttonText: 'Ver Listas',
+      sections,
+    });
+  },
 };
 
 const replys: Replys = {
