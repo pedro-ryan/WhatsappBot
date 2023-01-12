@@ -2,6 +2,8 @@ import { WASocket } from '@adiwajshing/baileys';
 import { Command, RawCommand, Replys, SubCommands } from '../interfaces';
 import { makeCenter, monospace } from '../utils';
 
+const testList: Array<{ id: string; name: string }> = [];
+
 function SendList(sock: WASocket, command: RawCommand) {
   sock.sendMessage(command.id, {
     buttons: [
@@ -29,8 +31,6 @@ function SendList(sock: WASocket, command: RawCommand) {
     ),
   });
 }
-
-const testList: Array<{ id: string; name: string }> = [];
 
 const subCommands: SubCommands = {
   rename(sock, command) {
