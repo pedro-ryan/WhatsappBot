@@ -68,12 +68,12 @@ async function start() {
     } else if (connection === 'open') {
       console.log('opened connection');
       await sock.sendPresenceUpdate('unavailable');
-      const groups = await sock.groupFetchAllParticipating();
-      Object.values(groups).forEach((value) => {
-        if (enabledGroups.some((el) => el === value.subject)) {
-          enabledGroupsId.push(value.id);
-        }
-      });
+      // const groups = await sock.groupFetchAllParticipating();
+      // Object.values(groups).forEach((value) => {
+      //   if (enabledGroups.some((el) => el === value.subject)) {
+      //     enabledGroupsId.push(value.id);
+      //   }
+      // });
     }
   });
 
