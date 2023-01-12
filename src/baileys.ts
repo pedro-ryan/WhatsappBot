@@ -80,13 +80,12 @@ async function start() {
           return;
         }
 
-        if (
-          botConfig.private &&
-          !botConfig.enabledIds.some((el) => el === message.key.remoteJid)
-        )
-          return;
-        if (botConfig.bannedIds.some((el) => el === message.key.remoteJid))
-          console.log(JSON.stringify(message, null, 2));
+        const FilterID = (id: string) => id === message.key.remoteJid;
+
+        if (botConfig.private && !botConfig.enabledIds.some(FilterID)) return;
+        if (botConfig.bannedIds.some(FilterID)) return;
+
+        console.log(JSON.stringify(message, null, 2));
         const command = makeCommand(message, sock);
         console.log('command', JSON.stringify(command, null, 2));
         if (botConfig.onlyMe && !command.isMe) return;
