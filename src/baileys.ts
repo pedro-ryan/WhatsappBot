@@ -4,16 +4,11 @@ import makeWASocket, {
 } from '@adiwajshing/baileys';
 import { Boom } from '@hapi/boom';
 import fs from 'fs';
+import botConfig from '../bot.config';
 import Commands from './commands';
 import { makeCommand } from './utils';
 
 const tokenFolder = 'db/tokens/baileys';
-const enabledGroups: string[] = [
-  '👨‍🔬 Testes 🧪',
-  'WhatsappBot',
-  'Campeonato Italiano 2023⚽',
-];
-const enabledGroupsId = ['559183054234@s.whatsapp.net'];
 
 async function start() {
   const { state, saveCreds } = await useMultiFileAuthState(tokenFolder);
@@ -84,11 +79,17 @@ async function start() {
           console.log('not contain remote JID: ', message);
           return;
         }
-        // if (!enabledGroupsId.some((el) => el === message.key.remoteJid)) return;
 
-        console.log(JSON.stringify(message, null, 2));
+        if (
+          botConfig.private &&
+          !botConfig.enabledIds.some((el) => el === message.key.remoteJid)
+        )
+          return;
+        if (botConfig.bannedIds.some((el) => el === message.key.remoteJid))
+          console.log(JSON.stringify(message, null, 2));
         const command = makeCommand(message, sock);
         console.log('command', JSON.stringify(command, null, 2));
+        if (botConfig.onlyMe && !command.isMe) return;
         if (!command.isCommand) return;
         const commandFunction = Commands[command.command];
         if (!commandFunction)
