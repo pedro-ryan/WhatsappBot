@@ -82,6 +82,11 @@ const subCommands: SubCommands = {
 
 const replys: Replys = {
   add(sock, command, index) {
+    if (new Date().getTime() > List.lifetime.getTime()) {
+      return sock.sendMessage(command.id, {
+        text: 'Infelizmente a lista já foi fechada 😔',
+      });
+    }
     if (index < 0) {
       List.participants.push({
         id: command.participant,
@@ -126,4 +131,19 @@ export default function list(sock: WASocket, command: Command) {
     return command.sendText('Infelizmente esse comando não existe');
   }
   SendList(sock, command);
+  if (!scheduledJobs[List.title]) {
+    scheduleJob(List.title, List.lifetime, () => {
+      if (!List.closed) {
+        List.closed = true;
+        sock.sendMessage(command.id, {
+          text: `A lista *${List.title}*, foi fechada`,
+        });
+      }
+      if (List.config.shuffle) {
+        sock.sendMessage(command.id, {
+          text: `Iniciando sorteio dos Times ( implementar dps :p )`,
+        });
+      }
+    });
+  }
 }
