@@ -43,6 +43,7 @@ function SendList(sock: WASocket, command: RawCommand) {
       `A lista será fechada automaticamente\nas ${List.lifetime.toLocaleTimeString(
         'pt-BR',
       )} do dia ${List.lifetime.toLocaleDateString('pt-BR')}`,
+      true,
     ),
     text: monospace(
       [

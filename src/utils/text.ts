@@ -21,7 +21,8 @@ const removeStyle = (txt: string) => {
 const UpperDiff = '𝗔'.codePointAt(0)! - 'A'.codePointAt(0)!;
 const LowerDiff = '𝗮'.codePointAt(0)! - 'a'.codePointAt(0)!;
 
-function bold(word: string) {
+function bold(word: string, unicode = false) {
+  if (!unicode) return `*${word}*`;
   return [...word]
     .map((char) => {
       const n = char.charCodeAt(0);
@@ -133,5 +134,9 @@ const monospace = (txt: string) => {
   return `\`\`\`${removeStyle(txt)}\`\`\``;
 };
 
-export { monospace, bold, makeCenter, revertBold, removeStyle };
+const italic = (txt: string) => {
+  return `_${txt}_`;
+};
+
+export { monospace, bold, makeCenter, revertBold, italic, removeStyle };
 export { lineBox, topBox, bottomBox, textBox };
