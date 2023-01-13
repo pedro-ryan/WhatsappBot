@@ -110,13 +110,18 @@ const subCommands: SubCommands = {
   },
 };
 
+const getUserIndex = (command: Command) => {
+  return List.participants.findIndex(({ id }) => id === command.participant);
+};
+
 const replys: Replys = {
-  add(sock, command, index) {
+  add(sock, command) {
     if (new Date().getTime() > List.lifetime.getTime()) {
       return sock.sendMessage(command.id, {
         text: 'Infelizmente a lista já foi fechada 😔',
       });
     }
+    const index = getUserIndex(command);
     if (index < 0) {
       List.participants.push({
         id: command.participant,
@@ -130,7 +135,8 @@ const replys: Replys = {
       );
     }
   },
-  remove(sock, command, index) {
+  remove(sock, command) {
+    const index = getUserIndex(command);
     if (index > -1) {
       List.participants.splice(index, 1);
       SendList(sock, command);
@@ -144,10 +150,7 @@ export default function list(sock: WASocket, command: Command) {
   if (command.isButtonReply) {
     console.log(command.buttonReply);
     const replyCommand = replys[command.buttonReply.args[0]];
-    const index = List.participants.findIndex(
-      ({ id }) => id === command.participant,
-    );
-    if (replyCommand) return replyCommand(sock, command, index);
+    if (replyCommand) return replyCommand(sock, command);
 
     return command.sendText(
       'Algo errado, hmm acho que esse botão ainda não foi implementado desculpe 😔',
