@@ -6,7 +6,7 @@ import { Boom } from '@hapi/boom';
 import fs from 'fs';
 import botConfig from '../bot.config';
 import Commands from './commands';
-import { makeCommand } from './utils';
+import { makeCommand } from './utils/commands';
 
 const tokenFolder = 'db/tokens/baileys';
 

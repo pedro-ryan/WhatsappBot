@@ -22,13 +22,13 @@ export interface RawCommand {
   id: string;
   participant: string;
   textMessage: string;
-  isMe: boolean | null | undefined;
-  isGroup: boolean | undefined;
+  isMe?: boolean | null;
+  isGroup?: boolean;
   isReply: boolean;
   isCommand: boolean;
-  isButtonReply: boolean | undefined;
+  isButtonReply?: boolean;
   buttonReply: {
-    raw: buttonResponse;
+    raw?: buttonResponse;
     id: string;
     index: number;
     text: string;

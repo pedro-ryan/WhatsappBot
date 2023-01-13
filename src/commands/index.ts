@@ -1,4 +1,4 @@
-import { CommandFC } from '../interfaces';
+import { CommandFC } from '../utils/interfaces';
 import list from './list';
 import oi from './oi';
 

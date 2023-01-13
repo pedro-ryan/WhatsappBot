@@ -1,7 +1,7 @@
 import { proto, WASocket } from '@adiwajshing/baileys';
 import { scheduledJobs, scheduleJob } from 'node-schedule';
-import { Command, RawCommand, Replys, SubCommands } from '../interfaces';
-import { bold, makeCenter, monospace } from '../utils';
+import { Command, RawCommand, Replys, SubCommands } from '../utils/interfaces';
+import { bold, makeCenter, monospace } from '../utils/text';
 
 const List = {
   participants: [] as Array<{ id: string; name: string }>,
