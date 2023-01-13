@@ -1,13 +1,20 @@
 FROM node:19-alpine
+USER root
 
 WORKDIR /app
 
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+ENV TZ=Asia/Calcutta
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python && \
+    apk add git
 
 COPY package*.json ./
 
-RUN npm install -g ts-node
-RUN npm install --verbose
+RUN npm install -g npm@9.3.0 && \
+    npm install -g ts-node && \
+    npm install -g nodemon && \
+    npm install
 
 COPY . .
 

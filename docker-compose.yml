@@ -4,6 +4,10 @@ services:
     build: .
     volumes:
       - 'database:/app/db'
+  dev:
+    build: .
+    volumes:
+      - 'database:/app/db'
       - '.:/app'
 
 volumes:
