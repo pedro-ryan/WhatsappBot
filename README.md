@@ -39,7 +39,7 @@
 | **!list**  | **!list**                             | Cria uma lista                                | :heavy_check_mark: |
 | **!play**  | **!play** <_Nome do Vídeo ou Musica_> | Baixa e Envia o Áudio de Um Vídeo do Youtube  |        :x:         |
 | **!image** | **!image** <_Termo da Pesquisa_>      | Baixa e Envia Imagens com o termo de Pesquisa |        :x:         |
-| **!help**  | **!help** <_Comando_>                 | Dá um resumo Sobre Algum Comando              |        :x:         |
+| **!help**  | **!help** <_Comando_>                 | Dá um resumo Sobre Algum Comando              | :heavy_check_mark: |
 
 # Objetivos/Features
 
@@ -49,7 +49,7 @@
 | :heavy_check_mark: |          Adicionar command para criar lista          |
 |        :x:         |         Adicionar Comando Para Baixar Musica         |
 |        :x:         |         Adicionar Comando Para Baixar Imagem         |
-|        :x:         |              Adicionar Comando de Ajuda              |
+| :heavy_check_mark: |              Adicionar Comando de Ajuda              |
 |        :x:         | Adicionar Comando Para Converter Imagem em Figurinha |
 | :heavy_check_mark: |                   Rodar no Docker                    |
 
