@@ -56,11 +56,31 @@ const buttonAtributes = (message: proto.IWebMessageInfo) => {
   };
 };
 
+const listAtributes = (message: proto.IWebMessageInfo) => {
+  const isListReply = !!message.message?.listResponseMessage;
+  const listResponse = message.message?.listResponseMessage;
+  const id = listResponse?.singleSelectReply?.selectedRowId || '';
+
+  const rawListCommand = id?.split(' ');
+
+  return {
+    isListReply,
+    listReply: {
+      id,
+      raw: listResponse,
+      title: listResponse?.title,
+      description: listResponse?.description,
+      command: rawListCommand.splice(0, 1)[0],
+      args: rawListCommand,
+    },
+  };
+};
 
 const makeCommand: MakeCommand = (message, sock) => {
   const isReply = !!message.message?.extendedTextMessage;
   console.log(message.message);
   const result: RawCommand = {
+    ...listAtributes(message),
     ...buttonAtributes(message),
     isReply,
     isCommand: false, // command !== '',
@@ -119,4 +139,38 @@ const makeCommand: MakeCommand = (message, sock) => {
     ...makeMessageFuncs(result, sock),
   };
 };
+
+type ActionsFC = (sock: WASocket, command: Command) => any;
+type ActionsList = { [k: string]: ActionsFC };
+
+interface GenConfig {
+  Command: ActionsFC;
+  SubCommands?: ActionsList;
+  ReplyButtons?: ActionsList;
+}
+
+const defaultMsgs = {
+  notImplemented:
+    'Algo errado, hmm acho que esse botão ainda não foi implementado desculpe 😔',
+  notExist: 'Infelizmente esse comando não existe',
+};
+
+function generateCommand(config: GenConfig) {
+  return function (sock: WASocket, command: Command) {
+    if (command.isButtonReply) {
+      if (!config.ReplyButtons) return;
+      const replyCommand = config.ReplyButtons[command.buttonReply.args[0]];
+      if (replyCommand) return replyCommand(sock, command);
+      return command.sendText(defaultMsgs.notImplemented);
+    }
+    if (command.subCommand) {
+      if (!config.SubCommands) return command.sendText(defaultMsgs.notExist);
+      const subCommand = config.SubCommands[command.subCommand];
+      if (subCommand) return subCommand(sock, command);
+      return command.sendText(defaultMsgs.notExist);
+    }
+    config.Command(sock, command);
+  };
+}
+
 export { makeCommand };

@@ -26,6 +26,7 @@ export interface RawCommand {
   isGroup?: boolean;
   isReply: boolean;
   isCommand: boolean;
+  isListReply?: boolean;
   isButtonReply?: boolean;
   buttonReply: {
     raw?: buttonResponse;
@@ -33,6 +34,14 @@ export interface RawCommand {
     index: number;
     text: string;
     type: proto.Message.ButtonsResponseMessage.Type;
+    command: string;
+    args: string[];
+  };
+  listReply: {
+    raw?: proto.Message.IListResponseMessage | null;
+    id: string;
+    title?: string | null;
+    description?: string | null;
     command: string;
     args: string[];
   };
