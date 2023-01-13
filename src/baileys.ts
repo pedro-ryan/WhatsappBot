@@ -8,6 +8,14 @@ import botConfig from '../bot.config';
 import Commands from './commands';
 import { makeCommand } from './utils/commands';
 
+console.log('Loading Commands...');
+const normalizedPath = require('path').join(__dirname, 'commands');
+
+fs.readdirSync(normalizedPath).forEach(function (file) {
+  require('./commands/' + file);
+});
+console.log('Commands Loaded');
+
 const tokenFolder = 'db/tokens/baileys';
 
 async function start() {
@@ -90,7 +98,8 @@ async function start() {
         console.log('command', JSON.stringify(command, null, 2));
         if (botConfig.onlyMe && !command.isMe) return;
         if (!command.isCommand) return;
-        const commandFunction = Commands[command.command];
+        console.log(Commands.enabled);
+        const commandFunction = Commands.enabled[command.command]?.execute;
         if (!commandFunction)
           return command.sendText('Infelizmente esse comando não existe');
         commandFunction(sock, command);

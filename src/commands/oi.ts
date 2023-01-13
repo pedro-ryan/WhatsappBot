@@ -1,6 +1,13 @@
-import { WASocket } from '@adiwajshing/baileys';
-import { Command } from '../utils/interfaces';
+import { generateCommand } from '../utils/commands';
 
-export default function oi(sock: WASocket, command: Command) {
-  return command.replyMessage('Olá');
-}
+generateCommand(
+  {
+    Command: (sock, command) => {
+      return command.replyMessage('Olá');
+    },
+  },
+  {
+    toUse: 'oi',
+    description: 'apenas responde com um Olá',
+  },
+);

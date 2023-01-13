@@ -1,7 +1,13 @@
 import { proto, WASocket } from '@adiwajshing/baileys';
+import Commands from '../commands';
 import {
   buttonResponse,
   Command,
+  CommandThis,
+  ExecConfig,
+  FailContext,
+  GenConfig,
+  GenInfos,
   MakeCommand,
   MakeMessageFuncs,
   RawCommand,
@@ -140,37 +146,77 @@ const makeCommand: MakeCommand = (message, sock) => {
   };
 };
 
-type ActionsFC = (sock: WASocket, command: Command) => any;
-type ActionsList = { [k: string]: ActionsFC };
-
-interface GenConfig {
-  Command: ActionsFC;
-  SubCommands?: ActionsList;
-  ReplyButtons?: ActionsList;
-}
-
 const defaultMsgs = {
   notImplemented:
     'Algo errado, hmm acho que esse botão ainda não foi implementado desculpe 😔',
   notExist: 'Infelizmente esse comando não existe',
 };
 
-function generateCommand(config: GenConfig) {
-  return function (sock: WASocket, command: Command) {
-    if (command.isButtonReply) {
-      if (!config.ReplyButtons) return;
-      const replyCommand = config.ReplyButtons[command.buttonReply.args[0]];
-      if (replyCommand) return replyCommand(sock, command);
-      return command.sendText(defaultMsgs.notImplemented);
-    }
-    if (command.subCommand) {
-      if (!config.SubCommands) return command.sendText(defaultMsgs.notExist);
-      const subCommand = config.SubCommands[command.subCommand];
-      if (subCommand) return subCommand(sock, command);
-      return command.sendText(defaultMsgs.notExist);
-    }
-    config.Command(sock, command);
+function ExecCommand(
+  this: CommandThis,
+  { CheckType, commands, index = '', onFail = () => {} }: ExecConfig,
+) {
+  const Fail = (ctx: FailContext) => {
+    onFail(ctx);
+    return true;
   };
+  if (CheckType) {
+    if (!commands) return Fail('NoCommand');
+    const FnCommand = commands[index];
+    if (FnCommand) {
+      FnCommand(this.sock, this.command);
+      return true;
+    }
+    return Fail('NotFound');
+  }
+  return false;
 }
 
-export { makeCommand };
+function generateCommand<
+  T extends GenConfig = GenConfig,
+  SC extends keyof T['SubCommands'] = keyof T['SubCommands'],
+  RB extends keyof T['ReplyButtons'] = keyof T['ReplyButtons'],
+  RL extends keyof T['ReplyList'] = keyof T['ReplyList'],
+>(config: T, infos: GenInfos<SC, RB, RL>): void {
+  function CommandFC(sock: WASocket, command: Command) {
+    const MSG = {
+      NotImplemented() {
+        command.sendText(defaultMsgs.notImplemented);
+      },
+      NotExist() {
+        command.sendText(defaultMsgs.notExist);
+      },
+    };
+    const That = { sock, command };
+    const ExecutedList = ExecCommand.call(That, {
+      CheckType: command.isListReply,
+      commands: config.ReplyList,
+      index: command.listReply.args[0],
+      onFail: MSG.NotImplemented,
+    });
+    if (ExecutedList) return;
+    const ExecutedButtonReply = ExecCommand.call(That, {
+      CheckType: command.isButtonReply,
+      commands: config.ReplyButtons,
+      index: command.buttonReply.args[0],
+      onFail: MSG.NotImplemented,
+    });
+    if (ExecutedButtonReply) return;
+    const ExecutedSubCommand = ExecCommand.call(That, {
+      CheckType: !!command.subCommand,
+      commands: config.SubCommands,
+      index: command.subCommand,
+      onFail: (ctx) => {
+        console.log(ctx);
+        if (ctx == 'NoCommand' && config.SubCommand)
+          return config.SubCommand(sock, command);
+        MSG.NotExist();
+      },
+    });
+    if (ExecutedSubCommand) return;
+    config.Command(sock, command);
+  }
+  Commands.Register(infos, CommandFC);
+}
+
+export { makeCommand, generateCommand };
