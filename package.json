@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@adiwajshing/baileys": "github:adiwajshing/baileys",
-    "@hapi/boom": "^10.0.0",
+    "@hapi/boom": "^10.0.1",
     "image-downloader": "^4.3.0",
     "jimp": "^0.16.2",
     "link-preview-js": "^3.0.4",
